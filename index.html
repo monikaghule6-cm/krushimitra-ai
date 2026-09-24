@@ -1,16 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KrushiMitra AI | Smart Farming Assistant</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-    <script src="firebase-config.js"></script>
-  </head>
-  <body>
-    <header class="topbar"><div class="container nav"><div class="brand"><div class="brand-mark">🌾</div><div><h2>KrushiMitra AI</h2><small>Smart Farmer Assistant</small></div></div><nav class="nav-links" aria-label="Main navigation"><a href="#overview">Overview</a><a href="#crop-doctor">Crop Doctor</a><a href="#recommendation">Recommendation</a><a href="#market">Market</a><a href="#community">Community</a></nav><div class="nav-actions"><span class="user-badge">Guest</span><a href="login.html" class="primary-btn">Farmer Login</a></div></div></header>
-    <main><section class="hero"><div class="container hero-inner"><div class="hero-left"><span class="tagline">AI-powered farming for better harvests</span><h1>Grow smarter. Earn more. Farm with confidence.</h1><p>Weather intelligence, crop disease detection, market price tracking, irrigation guidance, and community support for modern farmers.</p><div class="hero-actions"><a href="login.html" class="primary-btn">Get Started</a><button class="secondary-btn" type="button">Watch Demo</button></div><div class="mini-stats"><div><strong>12K+</strong><span>Farmers</span></div><div><strong>94%</strong><span>Accuracy</span></div><div><strong>7-Day</strong><span>Forecast</span></div></div></div><div class="hero-panel glass"><div class="weather-header"><span>Weather Overview</span><span class="status-pill success">Good</span></div><div class="temp-row"><h2>28°C</h2><span>🌤 Partly Sunny</span></div><div class="weather-grid"><div><label>Humidity</label><strong>68%</strong></div><div><label>Rain</label><strong>14 mm</strong></div><div><label>Wind</label><strong>10 km/h</strong></div><div><label>Soil</label><strong>Moisture</strong></div></div></div></div></section><section id="overview"><div class="container"><div class="section-head"><span class="eyebrow">Overview</span><h2>Everything a farmer needs in one smart dashboard.</h2></div><div class="stats-grid"><article class="stat-card glass"><span>🌦️</span><strong>7-day</strong><small>Weather predictions</small></article><article class="stat-card glass"><span>🩺</span><strong>AI scan</strong><small>Crop disease checks</small></article><article class="stat-card glass"><span>💧</span><strong>Smart</strong><small>Irrigation timing</small></article><article class="stat-card glass"><span>📈</span><strong>Live</strong><small>Market pricing</small></article></div></div></section></main><footer class="footer"><div class="container footer-inner"><p>© 2026 KrushiMitra AI</p><p>Helping farmers harvest smarter every day.</p></div></footer><script src="script.js"></script></body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KrushiMitra AI | Smart Farming Assistant</title>
+  <meta name="description" content="AI-powered crop health, recommendations, market prices, and farmer community." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="index.html"><div class="brand-mark">🌾</div><div><h2>KrushiMitra AI</h2><small>Smart Farmer Assistant</small></div></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#crop-doctor">Crop Doctor</a><a href="#recommendation">Recommendation</a><a href="#market">Market</a><a href="#community">Community</a>
+      </nav>
+      <div class="nav-actions"><span class="user-badge">Guest</span><a href="login.html" class="primary-btn">Farmer Login</a></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero"><div class="container hero-inner"><div class="hero-left">
+      <span class="tagline">AI-powered farming for better harvests</span>
+      <h1>Grow smarter. Earn more. Farm with confidence.</h1>
+      <p>Get practical crop health guidance, personalised farming recommendations, current market information, and support from fellow farmers.</p>
+      <div class="hero-actions"><a href="login.html" class="primary-btn">Get Started</a><a href="#crop-doctor" class="secondary-btn">Check Crop Health</a></div>
+      <div class="mini-stats"><div><strong>12K+</strong><span>Farmers</span></div><div><strong>94%</strong><span>Accuracy</span></div><div><strong>7-Day</strong><span>Forecast</span></div></div>
+    </div><div class="hero-panel glass"><div class="weather-header"><span>Weather Overview</span><span class="status-pill success">Good</span></div><div class="temp-row"><h2>28°C</h2><span>🌤 Partly Sunny</span></div><div class="weather-grid"><div><label>Humidity</label><strong>68%</strong></div><div><label>Rain</label><strong>14 mm</strong></div><div><label>Wind</label><strong>10 km/h</strong></div><div><label>Soil</label><strong>Moist</strong></div></div></div></div></section>
+
+    <section id="crop-doctor"><div class="container"><div class="section-head"><span class="eyebrow">AI Crop Doctor</span><h2>Find crop health issues early.</h2></div><div class="doctor-grid">
+      <div class="upload-box glass"><div class="upload-icon">📸</div><h3>Upload a crop image</h3><p>Choose a clear leaf or crop photo for an instant demo diagnosis.</p><input id="cropImage" type="file" accept="image/*" /><button id="detectBtn" class="primary-btn" type="button">Analyze Crop</button></div>
+      <div class="result-box glass"><div class="result-header"><h3>Diagnosis Result</h3><span class="status-pill warning">Ready</span></div><div id="resultContent"><h4>Waiting for image</h4><p>Upload an image and click Analyze Crop. The demo checker will provide a helpful starting recommendation.</p></div></div>
+    </div></div></section>
+
+    <section id="recommendation"><div class="container"><div class="section-head"><span class="eyebrow">Smart Recommendation</span><h2>Get a plan for your field.</h2></div><div class="recommend-grid">
+      <div class="panel form-panel glass"><div class="panel-head"><h3>Field details</h3><span class="status-pill success">AI Ready</span></div><form id="recommendForm"><label>Crop Type<select id="recommendCrop"><option value="Rice">Rice</option><option value="Wheat">Wheat</option><option value="Tomato">Tomato</option><option value="Maize">Maize</option></select></label><label>Soil Condition<select id="recommendSoil"><option>Loamy</option><option>Clay</option><option>Sandy</option></select></label><label>Farm Location<input id="recommendLocation" value="Nashik, Maharashtra" /></label><button class="primary-btn" type="submit">Generate Plan</button></form></div>
+      <div class="recommend-output glass"><div class="result-header"><h3>Recommended Field Action</h3><span class="crop-badge" id="recommendBadge">Rice Field</span></div><div id="recommendationResult"><span class="status-pill success">Optimal window</span><p>Submit your field details to receive a crop-specific recommendation.</p></div></div>
+    </div></div></section>
+
+    <section id="market"><div class="container"><div class="section-head"><span class="eyebrow">Market Watch</span><h2>Know the latest crop prices.</h2></div><div class="market-grid"><div class="panel small-panel glass"><div class="panel-head"><h3>Market Snapshot</h3><span class="status-pill success">Updated today</span></div><div class="market-list" id="marketList"><div><label>Wheat</label><strong>₹2,410/q</strong></div><div><label>Rice</label><strong>₹2,880/q</strong></div><div><label>Tomato</label><strong>₹1,980/q</strong></div><div><label>Maize</label><strong>₹2,330/q</strong></div></div></div><div class="panel glass"><div class="panel-head"><h3>Price trend</h3><span class="status-pill warning">This week</span></div><canvas id="marketChart" aria-label="Crop price trend"></canvas></div></div></div></section>
+
+    <section id="community"><div class="container"><div class="section-head"><span class="eyebrow">Farmer Community</span><h2>Learn and grow together.</h2></div><div class="split-grid"><div class="panel glass"><div class="panel-head"><h3>Farmer Alerts</h3><span class="status-pill danger">Important</span></div><ul class="alert-list"><li>Heavy rainfall expected in the western belt by Friday night.</li><li>Powdery mildew advisory for tomato growers.</li><li>Rice market rates increased by 4.8% this week.</li></ul></div><div class="panel glass"><div class="panel-head"><h3>Community Feed</h3><span class="status-pill success">Active</span></div><div class="community-posts"><article class="post"><strong>Rahul Patil</strong><p>“The crop doctor helped me identify early blight before it spread.”</p></article><article class="post"><strong>Sarita Devi</strong><p>“I used the irrigation recommendation and saved water this week.”</p></article><article class="post"><strong>Vinod K.</strong><p>“The market tracker helped me choose a better selling day.”</p></article></div></div></div></div></section>
+
+    <section class="save-section"><div class="container"><div class="cta-banner glass"><div><span class="eyebrow">Smart farming starts here</span><h3>Turn your field data into better decisions.</h3></div><a href="login.html" class="primary-btn">Join KrushiMitra</a></div></div></section>
+  </main>
+  <footer class="footer"><div class="container footer-inner"><p>© 2026 KrushiMitra AI</p><p>Helping farmers harvest smarter every day.</p></div></footer>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+  <script>
+    const cropImage = document.getElementById('cropImage');
+    document.getElementById('detectBtn')?.addEventListener('click', () => {
+      const name = cropImage?.files?.[0]?.name?.toLowerCase() || '';
+      const result = document.getElementById('resultContent');
+      if (name.includes('rust') || name.includes('leaf')) result.innerHTML = '<h4>Leaf Rust Detected</h4><p><strong>Confidence:</strong> 92%</p><p>Remove affected leaves, improve airflow, and use a suitable fungicide according to local agricultural guidance.</p>';
+      else if (name.includes('tomato') || name.includes('blight')) result.innerHTML = '<h4>Early Blight Risk</h4><p><strong>Confidence:</strong> 89%</p><p>Avoid overhead watering, improve plant spacing, and monitor the crop closely.</p>';
+      else result.innerHTML = '<h4>Healthy Crop Condition</h4><p><strong>Confidence:</strong> 87%</p><p>Continue regular monitoring, balanced nutrition, and timely irrigation.</p>';
+    });
+    document.getElementById('recommendForm')?.addEventListener('submit', (event) => { event.preventDefault(); const crop = document.getElementById('recommendCrop').value; const soil = document.getElementById('recommendSoil').value; document.getElementById('recommendBadge').textContent = crop + ' Field'; document.getElementById('recommendationResult').innerHTML = '<span class="status-pill success">Plan ready</span><span class="status-pill warning">Monitor moisture</span><p>For your <strong>' + crop + '</strong> crop in <strong>' + soil.toLowerCase() + ' soil</strong>, use balanced nutrition, irrigate during the cool hours, and inspect leaves twice a week.</p>'; });
+    const chart = document.getElementById('marketChart'); if (chart && window.Chart) new Chart(chart, { type: 'line', data: { labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'], datasets: [{ label: 'Rice ₹/q', data: [2720,2780,2750,2820,2860,2840,2880], borderColor: '#1fa764', backgroundColor: 'rgba(31,167,100,.15)', fill: true, tension: .35 }] }, options: { responsive: true, plugins: { legend: { display: false } } } });
+  </script>
+</body>
 </html>
