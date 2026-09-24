@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KrushiMitra AI</title>
+    <meta
+      name="description"
+      content="KrushiMitra AI - Smart Farmer Assistant"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <div class="brand">
+          <div class="brand-mark">🌾</div>
+          <div>
+            <h2>KrushiMitra AI</h2>
+            <small>Smart Farmer Assistant</small>
+          </div>
+        </div>
+
+        <nav class="nav-links">
+          <a href="#overview">Overview</a>
+          <a href="#crop-doctor">Crop Doctor</a>
+          <a href="#recommendation">Recommendation</a>
+          <a href="#market">Market</a>
+          <a href="#community">Community</a>
+        </nav>
+
+        <button class="primary-btn">Farmer Login</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-left">
+            <span class="tagline">AI-Powered Farming for Better Harvests</span>
+            <h1>Grow smarter. Earn more. Farm with confidence.</h1>
+            <p>
+              Weather intelligence, crop disease detection, market price
+              tracking, irrigation guidance, and community support for modern
+              farmers.
+            </p>
+
+            <div class="hero-actions">
+              <button class="primary-btn">Get Started</button>
+              <button class="secondary-btn">Watch Demo</button>
+            </div>
+
+            <div class="mini-stats">
+              <div>
+                <strong>12K+</strong>
+                <span>Farmers</span>
+              </div>
+              <div>
+                <strong>94%</strong>
+                <span>Accuracy</span>
+              </div>
+              <div>
+                <strong>7-Day</strong>
+                <span>Forecast</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-panel glass">
+            <div class="weather-header">
+              <span>Weather Overview</span>
+              <span class="status-pill success">Good</span>
+            </div>
+
+            <div class="temp-row">
+              <h2>28°C</h2>
+              <span>🌤 Partly Sunny</span>
+            </div>
+
+            <div class="weather-grid">
+              <div>
+                <label>Humidity</label>
+                <strong>68%</strong>
+              </div>
+              <div>
+                <label>Rain</label>
+                <strong>14 mm</strong>
+              </div>
+              <div>
+                <label>Wind</label>
+                <strong>10 km/h</strong>
+              </div>
+              <div>
+                <label>Soil</label>
+                <strong>Moist</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="overview">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Overview</span>
+            <h2>Farmer Dashboard</h2>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card glass">
+              <span>Total Crops</span>
+              <strong id="totalCrops">18</strong>
+              <small>Across 6 farms</small>
+            </div>
+            <div class="stat-card glass">
+              <span>Expected Yield</span>
+              <strong id="expectedYield">1840 kg</strong>
+              <small>+12% this season</small>
+            </div>
+            <div class="stat-card glass">
+              <span>Expenses</span>
+              <strong id="expenses">₹32,500</strong>
+              <small>Cost management</small>
+            </div>
+            <div class="stat-card glass">
+              <span>Profit</span>
+              <strong id="profit">₹48,900</strong>
+              <small>Projected income</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Quick Actions</span>
+            <h2>Everything a farmer needs</h2>
+          </div>
+
+          <div class="action-grid">
+            <div class="action-card">
+              <span>🩺</span>
+              <h4>AI Crop Doctor</h4>
+            </div>
+            <div class="action-card">
+              <span>🌦️</span>
+              <h4>Weather Advice</h4>
+            </div>
+            <div class="action-card">
+              <span>🌱</span>
+              <h4>Crop Planner</h4>
+            </div>
+            <div class="action-card">
+              <span>💰</span>
+              <h4>Market Prices</h4>
+            </div>
+            <div class="action-card">
+              <span>💧</span>
+              <h4>Irrigation</h4>
+            </div>
+            <div class="action-card">
+              <span>🧪</span>
+              <h4>Fertilizer</h4>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="two-col-section">
+        <div class="container split-grid">
+          <div class="panel glass">
+            <div class="panel-head">
+              <h3>Crop Health Status</h3>
+              <span class="status-pill success">Healthy</span>
+            </div>
+
+            <ul class="health-list">
+              <li>
+                <span>Wheat</span>
+                <strong>86%</strong>
+              </li>
+              <li>
+                <span>Rice</span>
+                <strong>78%</strong>
+              </li>
+              <li>
+                <span>Tomato</span>
+                <strong>91%</strong>
+              </li>
+              <li>
+                <span>Sugarcane</span>
+                <strong>74%</strong>
+              </li>
+            </ul>
+          </div>
+
+          <div class="panel glass">
+            <div class="panel-head">
+              <h3>Market Price Highlights</h3>
+              <span class="status-pill warning">Updated Today</span>
+            </div>
+
+            <div class="market-list">
+              <div>
+                <label>Wheat</label>
+                <strong>₹2,120/q</strong>
+              </div>
+              <div>
+                <label>Rice</label>
+                <strong>₹2,540/q</strong>
+              </div>
+              <div>
+                <label>Onion</label>
+                <strong>₹1,780/q</strong>
+              </div>
+              <div>
+                <label>Tomato</label>
+                <strong>₹1,940/q</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="crop-doctor">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">AI Crop Doctor</span>
+            <h2>Identify crop disease in seconds</h2>
+          </div>
+
+          <div class="doctor-grid">
+            <div class="upload-box glass">
+              <div class="upload-icon">📷</div>
+              <p>Upload crop or leaf image</p>
+              <input type="file" id="cropImage" accept="image/*" />
+              <button class="primary-btn" id="detectBtn">Detect Disease</button>
+            </div>
+
+            <div class="result-box glass">
+              <div class="result-header">
+                <h3>Diagnosis Result</h3>
+                <span class="status-pill danger">High confidence</span>
+              </div>
+
+              <div id="resultContent">
+                <h4>Leaf Rust Detected</h4>
+                <p><strong>Confidence:</strong> 92%</p>
+                <p>
+                  <strong>Treatment:</strong> Apply sulfur-based fungicide and
+                  improve airflow around the crop.
+                </p>
+                <p>
+                  <strong>Prevention:</strong> Rotate crops, use resistant
+                  seeds, and avoid excess moisture.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="recommendation">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Smart Crop Recommendation</span>
+            <h2>Find the best crop for your field</h2>
+          </div>
+
+          <div class="recommend-grid">
+            <div class="form-panel glass">
+              <form id="cropForm">
+                <label>
+                  Soil Type
+                  <select id="soilType">
+                    <option value="loamy">Loamy</option>
+                    <option value="clay">Clay</option>
+                    <option value="sandy">Sandy</option>
+                    <option value="black">Black Soil</option>
+                  </select>
+                </label>
+
+                <label>
+                  Land Size
+                  <input type="number" id="landSize" value="5" min="1" />
+                </label>
+
+                <label>
+                  Season
+                  <select id="season">
+                    <option value="kharif">Kharif</option>
+                    <option value="rabi">Rabi</option>
+                    <option value="summer">Summer</option>
+                  </select>
+                </label>
+
+                <button type="submit" class="primary-btn">
+                  Recommend Crops
+                </button>
+              </form>
+            </div>
+
+            <div class="recommend-output glass">
+              <h3>Suggested Crops</h3>
+              <div id="recommendationResult">
+                <div class="crop-badge">Rice</div>
+                <div class="crop-badge">Soybean</div>
+                <div class="crop-badge">Cotton</div>
+                <p><strong>Estimated Profit:</strong> ₹1.8L / acre</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="market">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Market Tracker</span>
+            <h2>Daily mandi rates and market insights</h2>
+          </div>
+
+          <div class="market-grid">
+            <div class="panel glass small-panel">
+              <h3>Crop-wise Prices</h3>
+              <div class="market-table">
+                <div class="row">
+                  <span>Rice</span>
+                  <strong>₹2,540/q</strong>
+                </div>
+                <div class="row">
+                  <span>Wheat</span>
+                  <strong>₹2,120/q</strong>
+                </div>
+                <div class="row">
+                  <span>Tur</span>
+                  <strong>₹6,300/q</strong>
+                </div>
+                <div class="row">
+                  <span>Groundnut</span>
+                  <strong>₹5,900/q</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel glass small-panel">
+              <h3>Price Trend (7 Days)</h3>
+              <canvas id="marketChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Smart Tools</span>
+            <h2>Farm operations made easier</h2>
+          </div>
+
+          <div class="tools-grid">
+            <div class="tool-card glass">
+              <h3>💧 Smart Irrigation</h3>
+              <div class="tool-form">
+                <label>
+                  Area (acres)
+                  <input type="number" id="area" value="2" />
+                </label>
+                <label>
+                  Crop
+                  <select id="irrigationCrop">
+                    <option value="rice">Rice</option>
+                    <option value="wheat">Wheat</option>
+                    <option value="cotton">Cotton</option>
+                    <option value="tomato">Tomato</option>
+                  </select>
+                </label>
+                <button class="primary-btn" id="irrigationBtn">
+                  Calculate Water Need
+                </button>
+                <p id="waterResult">Daily requirement: 5,600 L</p>
+              </div>
+            </div>
+
+            <div class="tool-card glass">
+              <h3>🧪 Fertilizer Advisor</h3>
+              <div class="tool-form">
+                <label>
+                  Crop
+                  <select id="fertCrop">
+                    <option value="wheat">Wheat</option>
+                    <option value="rice">Rice</option>
+                    <option value="maize">Maize</option>
+                    <option value="tomato">Tomato</option>
+                  </select>
+                </label>
+                <label>
+                  Land Size (acres)
+                  <input type="number" id="fertArea" value="3" />
+                </label>
+                <button class="primary-btn" id="fertBtn">Get Plan</button>
+                <p id="fertResult">NPK: 100 kg | 60 kg | 40 kg</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">AI Voice Assistant</span>
+            <h2>Ask in Marathi, Hindi or English</h2>
+          </div>
+
+          <div class="voice-panel glass">
+            <div class="voice-controls">
+              <button class="lang-btn active" data-lang="English">English</button>
+              <button class="lang-btn" data-lang="हिन्दी">हिन्दी</button>
+              <button class="lang-btn" data-lang="मराठी">मराठी</button>
+            </div>
+
+            <div class="voice-box">
+              <p id="voiceQuestion">“How much water should I apply today?”</p>
+              <button id="speakBtn" class="primary-btn">Speak</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="alerts-community">
+        <div class="container split-grid">
+          <div class="panel glass">
+            <div class="panel-head">
+              <h3>Emergency Alerts</h3>
+              <span class="status-pill danger">Active</span>
+            </div>
+
+            <ul class="alert-list">
+              <li>Heavy rain warning in Western region</li>
+              <li>Pest outbreak risk for cotton farms</li>
+              <li>Drought alert for low rainfall belt</li>
+            </ul>
+          </div>
+
+          <div class="panel glass" id="community">
+            <div class="panel-head">
+              <h3>Farmer Community Hub</h3>
+              <span class="status-pill success">Online</span>
+            </div>
+
+            <div class="community-posts">
+              <div class="post">
+                <strong>Ramesh Patil</strong>
+                <p>Best irrigation technique for sugarcane in black soil.</p>
+              </div>
+              <div class="post">
+                <strong>Santosh Jadhav</strong>
+                <p>Organic pest control method worked for my onion field.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="save-section">
+        <div class="container">
+          <div class="panel glass">
+            <div class="panel-head">
+              <h3>Save Farmer Record</h3>
+            </div>
+
+            <form id="farmerRecordForm">
+              <label>
+                Farmer Name
+                <input type="text" id="farmerName" placeholder="Enter farmer name" required />
+              </label>
+
+              <label>
+                Crop
+                <input type="text" id="farmerCrop" placeholder="e.g. Wheat" required />
+              </label>
+
+              <label>
+                Area (acres)
+                <input type="number" id="farmerArea" value="5" required />
+              </label>
+
+              <button type="submit" class="primary-btn">Save to Firebase</button>
+            </form>
+
+            <div id="saveStatus" class="save-status"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <p>© 2026 KrushiMitra AI</p>
+        <p>AI-powered farming for better harvests</p>
+      </div>
+    </footer>
+
+    <script src="firebase-config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
