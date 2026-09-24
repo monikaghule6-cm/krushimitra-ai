@@ -4,32 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KrushiMitra AI | Login</title>
-    <meta
-      name="description"
-      content="Login to KrushiMitra AI and access smart farming insights and crop recommendations."
-    />
+    <meta name="description" content="Login to KrushiMitra AI and access smart farming insights and crop recommendations." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
   </head>
   <body class="login-page">
     <header class="topbar">
       <div class="container nav">
         <div class="brand">
           <div class="brand-mark">🌾</div>
-          <div>
-            <h2>KrushiMitra AI</h2>
-            <small>Smart Farmer Assistant</small>
-          </div>
+          <div><h2>KrushiMitra AI</h2><small>Smart Farmer Assistant</small></div>
         </div>
-
-        <div class="nav-actions">
-          <a href="index.html" class="secondary-btn">Back to Home</a>
-        </div>
+        <div class="nav-actions"><a href="index.html" class="secondary-btn">Back to Home</a></div>
       </div>
     </header>
 
@@ -39,41 +31,29 @@
           <button class="auth-tab active" data-mode="login" type="button">Login</button>
           <button class="auth-tab" data-mode="signup" type="button">Sign up</button>
         </div>
-
         <form id="authForm" novalidate>
           <div class="field-group hidden" id="nameField">
             <label for="authName">Full name</label>
-            <input id="authName" name="name" type="text" placeholder="Your full name" />
+            <input id="authName" name="name" type="text" placeholder="Your full name" autocomplete="name" />
           </div>
-
           <div class="field-group">
             <label for="authEmail">Email address</label>
-            <input id="authEmail" name="email" type="email" placeholder="you@example.com" required />
+            <input id="authEmail" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
           </div>
-
           <div class="field-group">
             <label for="authPassword">Password</label>
-            <input id="authPassword" name="password" type="password" placeholder="Enter your password" required />
+            <input id="authPassword" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" minlength="6" required />
           </div>
-
           <div class="form-row">
-            <label class="checkbox-row">
-              <input type="checkbox" />
-              <span>Remember me</span>
-            </label>
-            <a href="#" class="text-link">Forgot password?</a>
+            <label class="checkbox-row"><input id="rememberMe" type="checkbox" checked /><span>Remember me</span></label>
+            <button id="resetPasswordBtn" class="text-link" type="button">Forgot password?</button>
           </div>
-
           <button type="submit" class="primary-btn" id="authSubmitBtn">Login</button>
         </form>
-
         <div class="auth-status" id="authStatus" aria-live="polite"></div>
-
-        <div class="auth-divider"><span>or</span></div>
-        <button type="button" class="secondary-btn social-btn">Continue with Google</button>
+        <div class="auth-divider"><span>secure Firebase authentication</span></div>
       </div>
     </main>
-
     <script src="script.js"></script>
   </body>
 </html>
