@@ -1,669 +1,549 @@
-:root {
-  --bg: #f5fbf7;
-  --bg-soft: #ebf8ef;
-  --primary: #1fa764;
-  --primary-dark: #0e7b4a;
-  --primary-light: #dff7e8;
-  --accent: #f7d26a;
-  --text: #123228;
-  --muted: #5e7a72;
-  --card: rgba(255, 255, 255, 0.74);
-  --border: rgba(20, 98, 57, 0.12);
-  --shadow: 0 20px 50px rgba(17, 79, 52, 0.10);
-  --danger: #e15a4d;
-  --warning: #f0a11b;
-  --success: #2bb875;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: "Inter", sans-serif;
-  color: var(--text);
-  background:
-    radial-gradient(circle at top left, rgba(87, 216, 146, 0.12), transparent 28%),
-    linear-gradient(180deg, #f8fffa 0%, #eefaf3 100%);
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-button,
-input,
-select {
-  font: inherit;
-}
-
-img {
-  max-width: 100%;
-}
-
-.container {
-  width: min(1200px, calc(100% - 30px));
-  margin: 0 auto;
-}
-
-.topbar {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(245, 251, 247, 0.8);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(14, 123, 74, 0.08);
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 0;
-  gap: 24px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.brand-mark {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-  color: white;
-  font-size: 1.5rem;
-  box-shadow: var(--shadow);
-}
-
-.brand h2 {
-  font-size: 1.2rem;
-}
-
-.brand small {
-  color: var(--muted);
-  display: block;
-  font-size: 0.74rem;
-}
-
-.nav-links {
-  display: flex;
-  gap: 22px;
-  font-weight: 600;
-  color: var(--muted);
-}
-
-.nav-links a:hover {
-  color: var(--primary-dark);
-}
-
-.primary-btn,
-.secondary-btn,
-.lang-btn {
-  border: none;
-  border-radius: 12px;
-  padding: 12px 18px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.primary-btn {
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-  color: white;
-  box-shadow: 0 12px 24px rgba(31, 167, 100, 0.25);
-}
-
-.primary-btn:hover,
-.secondary-btn:hover,
-.lang-btn:hover {
-  transform: translateY(-1px);
-}
-
-.secondary-btn {
-  background: white;
-  color: var(--text);
-  border: 1px solid var(--border);
-}
-
-.hero {
-  padding: 60px 0 32px;
-}
-
-.hero-inner {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  align-items: center;
-  gap: 28px;
-}
-
-.tagline {
-  display: inline-block;
-  margin-bottom: 16px;
-  padding: 8px 14px;
-  background: var(--primary-light);
-  border-radius: 999px;
-  color: var(--primary-dark);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  font-size: 0.72rem;
-}
-
-.hero-left h1 {
-  font-size: clamp(2.8rem, 5.5vw, 5rem);
-  line-height: 1.04;
-  letter-spacing: -0.06em;
-  margin-bottom: 18px;
-}
-
-.hero-left p {
-  color: var(--muted);
-  line-height: 1.7;
-  max-width: 620px;
-  font-size: 1.05rem;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 16px;
-  margin-top: 28px;
-}
-
-.mini-stats {
-  display: flex;
-  gap: 30px;
-  margin-top: 28px;
-}
-
-.mini-stats strong {
-  display: block;
-  font-size: 1.5rem;
-}
-
-.mini-stats span {
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-.glass {
-  background: var(--card);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  box-shadow: var(--shadow);
-}
-
-.hero-panel {
-  padding: 24px;
-}
-
-.weather-header,
-.panel-head,
-.result-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 14px;
-}
-
-.status-pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  padding: 7px 12px;
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
-.success {
-  color: var(--success);
-  background: rgba(43, 184, 117, 0.1);
-}
-
-.warning {
-  color: var(--warning);
-  background: rgba(240, 161, 27, 0.12);
-}
-
-.danger {
-  color: var(--danger);
-  background: rgba(225, 90, 77, 0.1);
-}
-
-.temp-row {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  margin: 24px 0 18px;
-}
-
-.temp-row h2 {
-  font-size: clamp(2.4rem, 3vw, 3.6rem);
-}
-
-.weather-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(110px, 1fr));
-  gap: 18px;
-}
-
-.weather-grid label,
-.market-list label,
-.market-table .row span {
-  display: block;
-  color: var(--muted);
-  margin-bottom: 8px;
-}
-
-section {
-  padding: 52px 0;
-}
-
-.section-head {
-  margin-bottom: 22px;
-}
-
-.eyebrow {
-  color: var(--primary-dark);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.72rem;
-  font-weight: 700;
-  display: inline-block;
-  margin-bottom: 12px;
-}
-
-.section-head h2 {
-  font-size: clamp(2rem, 2.7vw, 2.8rem);
-  letter-spacing: -0.05em;
-}
-
-.stats-grid,
-.action-grid,
-.market-grid,
-.doctor-grid,
-.recommend-grid,
-.tools-grid {
-  display: grid;
-  gap: 22px;
-}
-
-.stats-grid {
-  grid-template-columns: repeat(4, minmax(180px, 1fr));
-}
-
-.stat-card {
-  padding: 22px 18px;
-  border-radius: 22px;
-}
-
-.stat-card span {
-  color: var(--muted);
-  display: block;
-}
-
-.stat-card strong {
-  display: block;
-  margin: 14px 0 8px;
-  font-size: clamp(1.8rem, 2.8vw, 2.4rem);
-}
-
-.action-grid {
-  grid-template-columns: repeat(6, minmax(120px, 1fr));
-}
-
-.action-card {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  border-radius: 22px;
-  padding: 26px 14px;
-  text-align: center;
-}
-
-.action-card span {
-  font-size: 2.2rem;
-  margin-bottom: 14px;
-  display: block;
-}
-
-.action-card h4 {
-  font-size: 1rem;
-}
-
-.split-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
-}
-
-.panel,
-.form-panel,
-.recommend-output,
-.upload-box,
-.result-box,
-.tool-card,
-.voice-panel {
-  padding: 22px;
-}
-
-.health-list,
-.alert-list {
-  list-style: none;
-  margin-top: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.health-list li,
-.market-list > div,
-.market-table .row,
-.community-posts .post {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(18, 50, 40, 0.08);
-}
-
-.health-list li:last-child,
-.market-list > div:last-child,
-.market-table .row:last-child,
-.community-posts .post:last-child {
-  border-bottom: none;
-}
-
-.market-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.doctor-grid {
-  grid-template-columns: 0.9fr 1.1fr;
-}
-
-.upload-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  min-height: 280px;
-}
-
-.upload-icon {
-  font-size: 3.5rem;
-  margin-bottom: 20px;
-}
-
-.upload-box input[type="file"] {
-  width: 100%;
-  margin: 18px 0;
-  padding: 12px 14px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px dashed rgba(31, 167, 100, 0.35);
-}
-
-.result-box h4 {
-  margin-top: 14px;
-  margin-bottom: 10px;
-  font-size: 1.9rem;
-}
-
-.result-box p {
-  color: var(--muted);
-  line-height: 1.8;
-  margin-bottom: 8px;
-}
-
-.recommend-grid {
-  grid-template-columns: 0.9fr 1.1fr;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-label {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-  font-weight: 600;
-}
-
-input,
-select {
-  width: 100%;
-  padding: 14px 16px;
-  border-radius: 14px;
-  border: 1px solid rgba(20, 98, 57, 0.15);
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--text);
-}
-
-.recommend-output h3 {
-  margin-bottom: 18px;
-}
-
-#recommendationResult {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  align-items: center;
-}
-
-.crop-badge {
-  background: var(--primary-light);
-  color: var(--primary-dark);
-  border-radius: 999px;
-  padding: 10px 14px;
-  font-weight: 700;
-}
-
-#recommendationResult p {
-  width: 100%;
-  color: var(--muted);
-  margin-top: 12px;
-  font-size: 1.04rem;
-}
-
-.market-grid {
-  grid-template-columns: 0.9fr 1.1fr;
-}
-
-.small-panel {
-  min-height: 300px;
-}
-
-.market-table {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 12px;
-}
-
-.market-table .row {
-  padding: 14px 0;
-}
-
-#marketChart {
-  margin-top: 18px;
-  max-height: 240px;
-}
-
-.tools-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.tool-card h3 {
-  margin-bottom: 18px;
-}
-
-.tool-form {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.tool-form p {
-  margin-top: 6px;
-  color: var(--muted);
-  font-weight: 600;
-}
-
-.voice-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.voice-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.lang-btn {
-  background: rgba(255, 255, 255, 0.7);
-  color: var(--text);
-  border: 1px solid var(--border);
-}
-
-.lang-btn.active {
-  background: var(--primary);
-  color: white;
-  border-color: transparent;
-}
-
-.voice-box {
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-#voiceQuestion {
-  color: var(--muted);
-  font-size: 1.08rem;
-  line-height: 1.6;
-}
-
-.community-posts {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-top: 18px;
-}
-
-.post {
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.post p {
-  color: var(--muted);
-  margin-top: 8px;
-  line-height: 1.7;
-}
-
-.alert-list li {
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(18, 50, 40, 0.08);
-  color: var(--muted);
-}
-
-.alert-list li:last-child {
-  border-bottom: none;
-}
-
-.save-section {
-  padding-top: 20px;
-}
-
-.save-status {
-  margin-top: 16px;
-  color: var(--primary-dark);
-  font-weight: 700;
-  min-height: 24px;
-}
-
-.footer {
-  background: #113229;
-  color: rgba(255, 255, 255, 0.8);
-  padding: 22px 0;
-  margin-top: 20px;
-}
-
-.footer-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 18px;
-}
-
-@media (max-width: 980px) {
-  .hero-inner,
-  .split-grid,
-  .doctor-grid,
-  .recommend-grid,
-  .market-grid,
-  .tools-grid,
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .nav-links {
-    display: none;
-  }
-
-  .action-grid {
-    grid-template-columns: repeat(2, minmax(130px, 1fr));
-  }
-}
-
-@media (max-width: 640px) {
-  .hero {
-    padding-top: 30px;
-  }
-
-  .hero-actions,
-  .mini-stats,
-  .voice-box,
-  .footer-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .action-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .lang-btn {
-    flex: 1;
-  }
-}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KrushiMitra AI</title>
+    <meta
+      name="description"
+      content="KrushiMitra AI - Smart Farmer Assistant"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <div class="brand">
+          <div class="brand-mark">🌾</div>
+          <div>
+            <h2>KrushiMitra AI</h2>
+            <small>Smart Farmer Assistant</small>
+          </div>
+        </div>
+
+        <nav class="nav-links">
+          <a href="#overview">Overview</a>
+          <a href="#crop-doctor">Crop Doctor</a>
+          <a href="#recommendation">Recommendation</a>
+          <a href="#market">Market</a>
+          <a href="#community">Community</a>
+        </nav>
+
+        <div class="nav-actions">
+          <span id="userBadge" class="user-badge">Guest</span>
+          <button class="primary-btn" id="loginToggleBtn">Farmer Login</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="auth-shell">
+      <div class="container">
+        <div id="authPanel" class="auth-card glass hidden">
+          <div class="auth-tabs">
+            <button class="auth-tab active" data-mode="login">Login</button>
+            <button class="auth-tab" data-mode="signup">Sign Up</button>
+          </div>
+
+          <form id="authForm">
+            <label>
+              Email
+              <input type="email" id="authEmail" placeholder="farmer@email.com" required />
+            </label>
+
+            <label>
+              Password
+              <input type="password" id="authPassword" placeholder="Minimum 6 characters" required />
+            </label>
+
+            <button type="submit" class="primary-btn" id="authSubmitBtn">Login</button>
+          </form>
+
+          <p id="authStatus" class="auth-status"></p>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-left">
+            <span class="tagline">AI-Powered Farming for Better Harvests</span>
+            <h1>Grow smarter. Earn more. Farm with confidence.</h1>
+            <p>
+              Weather intelligence, crop disease detection, market price
+              tracking, irrigation guidance, and community support for modern
+              farmers.
+            </p>
+
+            <div class="hero-actions">
+              <button class="primary-btn">Get Started</button>
+              <button class="secondary-btn">Watch Demo</button>
+            </div>
+
+            <div class="mini-stats">
+              <div>
+                <strong>12K+</strong>
+                <span>Farmers</span>
+              </div>
+              <div>
+                <strong>94%</strong>
+                <span>Accuracy</span>
+              </div>
+              <div>
+                <strong>7-Day</strong>
+                <span>Forecast</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-panel glass">
+            <div class="weather-header">
+              <span>Weather Overview</span>
+              <span class="status-pill success">Good</span>
+            </div>
+
+            <div class="temp-row">
+              <h2>28°C</h2>
+              <span>🌤 Partly Sunny</span>
+            </div>
+
+            <div class="weather-grid">
+              <div>
+                <label>Humidity</label>
+                <strong>68%</strong>
+              </div>
+              <div>
+                <label>Rain</label>
+                <strong>14 mm</strong>
+              </div>
+              <div>
+                <label>Wind</label>
+                <strong>10 km/h</strong>
+              </div>
+              <div>
+                <label>Soil</label>
+                <strong>Moist</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="overview">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Overview</span>
+            <h2>Farmer Dashboard</h2>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card glass">
+              <span>Total Crops</span>
+              <strong id="totalCrops">18</strong>
+              <small>Across 6 farms</small>
+            </div>
+            <div class="stat-card glass">
+              <span>Expected Yield</span>
+              <strong id="expectedYield">1840 kg</strong>
+              <small>+12% this season</small>
+            </div>
+            <div class="stat-card glass">
+              <span>Expenses</span>
+              <strong id="expenses">₹32,500</strong>
+              <small>Cost management</small>
+            </div>
+            <div class="stat-card glass">
+              <span>Profit</span>
+              <strong id="profit">₹48,900</strong>
+              <small>Projected income</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Quick Actions</span>
+            <h2>Everything a farmer needs</h2>
+          </div>
+
+          <div class="action-grid">
+            <div class="action-card">
+              <span>🩺</span>
+              <h4>AI Crop Doctor</h4>
+            </div>
+            <div class="action-card">
+              <span>🌦️</span>
+              <h4>Weather Advice</h4>
+            </div>
+            <div class="action-card">
+              <span>🌱</span>
+              <h4>Crop Planner</h4>
+            </div>
+            <div class="action-card">
+              <span>💰</span>
+              <h4>Market Prices</h4>
+            </div>
+            <div class="action-card">
+              <span>💧</span>
+              <h4>Irrigation</h4>
+            </div>
+            <div class="action-card">
+              <span>🧪</span>
+              <h4>Fertilizer</h4>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="two-col-section">
+        <div class="container split-grid">
+          <div class="panel glass">
+            <div class="panel-head">
+              <h3>Crop Health Status</h3>
+              <span class="status-pill success">Healthy</span>
+            </div>
+
+            <ul class="health-list">
+              <li>
+                <span>Wheat</span>
+                <strong>86%</strong>
+              </li>
+              <li>
+                <span>Rice</span>
+                <strong>78%</strong>
+              </li>
+              <li>
+                <span>Tomato</span>
+                <strong>91%</strong>
+              </li>
+              <li>
+                <span>Sugarcane</span>
+                <strong>74%</strong>
+              </li>
+            </ul>
+          </div>
+
+          <div class="panel glass">
+            <div class="panel-head">
+              <h3>Market Price Highlights</h3>
+              <span class="status-pill warning">Updated Today</span>
+            </div>
+
+            <div class="market-list">
+              <div>
+                <label>Wheat</label>
+                <strong>₹2,120/q</strong>
+              </div>
+              <div>
+                <label>Rice</label>
+                <strong>₹2,540/q</strong>
+              </div>
+              <div>
+                <label>Onion</label>
+                <strong>₹1,780/q</strong>
+              </div>
+              <div>
+                <label>Tomato</label>
+                <strong>₹1,940/q</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="crop-doctor">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">AI Crop Doctor</span>
+            <h2>Identify crop disease in seconds</h2>
+          </div>
+
+          <div class="doctor-grid">
+            <div class="upload-box glass">
+              <div class="upload-icon">📷</div>
+              <p>Upload crop or leaf image</p>
+              <input type="file" id="cropImage" accept="image/*" />
+              <button class="primary-btn" id="detectBtn">Detect Disease</button>
+            </div>
+
+            <div class="result-box glass">
+              <div class="result-header">
+                <h3>Diagnosis Result</h3>
+                <span class="status-pill danger">High confidence</span>
+              </div>
+
+              <div id="resultContent">
+                <h4>Leaf Rust Detected</h4>
+                <p><strong>Confidence:</strong> 92%</p>
+                <p>
+                  <strong>Treatment:</strong> Apply sulfur-based fungicide and
+                  improve airflow around the crop.
+                </p>
+                <p>
+                  <strong>Prevention:</strong> Rotate crops, use resistant
+                  seeds, and avoid excess moisture.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="recommendation">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Smart Crop Recommendation</span>
+            <h2>Find the best crop for your field</h2>
+          </div>
+
+          <div class="recommend-grid">
+            <div class="form-panel glass">
+              <form id="cropForm">
+                <label>
+                  Soil Type
+                  <select id="soilType">
+                    <option value="loamy">Loamy</option>
+                    <option value="clay">Clay</option>
+                    <option value="sandy">Sandy</option>
+                    <option value="black">Black Soil</option>
+                  </select>
+                </label>
+
+                <label>
+                  Land Size
+                  <input type="number" id="landSize" value="5" min="1" />
+                </label>
+
+                <label>
+                  Season
+                  <select id="season">
+                    <option value="kharif">Kharif</option>
+                    <option value="rabi">Rabi</option>
+                    <option value="summer">Summer</option>
+                  </select>
+                </label>
+
+                <button type="submit" class="primary-btn">
+                  Recommend Crops
+                </button>
+              </form>
+            </div>
+
+            <div class="recommend-output glass">
+              <h3>Suggested Crops</h3>
+              <div id="recommendationResult">
+                <div class="crop-badge">Rice</div>
+                <div class="crop-badge">Soybean</div>
+                <div class="crop-badge">Cotton</div>
+                <p><strong>Estimated Profit:</strong> ₹1.8L / acre</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="market">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Market Tracker</span>
+            <h2>Daily mandi rates and market insights</h2>
+          </div>
+
+          <div class="market-grid">
+            <div class="panel glass small-panel">
+              <h3>Crop-wise Prices</h3>
+              <div class="market-table">
+                <div class="row">
+                  <span>Rice</span>
+                  <strong>₹2,540/q</strong>
+                </div>
+                <div class="row">
+                  <span>Wheat</span>
+                  <strong>₹2,120/q</strong>
+                </div>
+                <div class="row">
+                  <span>Tur</span>
+                  <strong>₹6,300/q</strong>
+                </div>
+                <div class="row">
+                  <span>Groundnut</span>
+                  <strong>₹5,900/q</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel glass small-panel">
+              <h3>Price Trend (7 Days)</h3>
+              <canvas id="marketChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Smart Tools</span>
+            <h2>Farm operations made easier</h2>
+          </div>
+
+          <div class="tools-grid">
+            <div class="tool-card glass">
+              <h3>💧 Smart Irrigation</h3>
+              <div class="tool-form">
+                <label>
+                  Area (acres)
+                  <input type="number" id="area" value="2" />
+                </label>
+                <label>
+                  Crop
+                  <select id="irrigationCrop">
+                    <option value="rice">Rice</option>
+                    <option value="wheat">Wheat</option>
+                    <option value="cotton">Cotton</option>
+                    <option value="tomato">Tomato</option>
+                  </select>
+                </label>
+                <button class="primary-btn" id="irrigationBtn">
+                  Calculate Water Need
+                </button>
+                <p id="waterResult">Daily requirement: 5,600 L</p>
+              </div>
+            </div>
+
+            <div class="tool-card glass">
+              <h3>🧪 Fertilizer Advisor</h3>
+              <div class="tool-form">
+                <label>
+                  Crop
+                  <select id="fertCrop">
+                    <option value="wheat">Wheat</option>
+                    <option value="rice">Rice</option>
+                    <option value="maize">Maize</option>
+                    <option value="tomato">Tomato</option>
+                  </select>
+                </label>
+                <label>
+                  Land Size (acres)
+                  <input type="number" id="fertArea" value="3" />
+                </label>
+                <button class="primary-btn" id="fertBtn">Get Plan</button>
+                <p id="fertResult">NPK: 100 kg | 60 kg | 40 kg</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">AI Voice Assistant</span>
+            <h2>Ask in Marathi, Hindi or English</h2>
+          </div>
+
+          <div class="voice-panel glass">
+            <div class="voice-controls">
+              <button class="lang-btn active" data-lang="English">English</button>
+              <button class="lang-btn" data-lang="हिन्दी">हिन्दी</button>
+              <button class="lang-btn" data-lang="मराठी">मराठी</button>
+            </div>
+
+            <div class="voice-box">
+              <p id="voiceQuestion">“How much water should I apply today?”</p>
+              <button id="speakBtn" class="primary-btn">Speak</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="alerts-community">
+        <div class="container split-grid">
+          <div class="panel glass">
+            <div class="panel-head">
+              <h3>Emergency Alerts</h3>
+              <span class="status-pill danger">Active</span>
+            </div>
+
+            <ul class="alert-list">
+              <li>Heavy rain warning in Western region</li>
+              <li>Pest outbreak risk for cotton farms</li>
+              <li>Drought alert for low rainfall belt</li>
+            </ul>
+          </div>
+
+          <div class="panel glass" id="community">
+            <div class="panel-head">
+              <h3>Farmer Community Hub</h3>
+              <span class="status-pill success">Online</span>
+            </div>
+
+            <div class="community-posts">
+              <div class="post">
+                <strong>Ramesh Patil</strong>
+                <p>Best irrigation technique for sugarcane in black soil.</p>
+              </div>
+              <div class="post">
+                <strong>Santosh Jadhav</strong>
+                <p>Organic pest control method worked for my onion field.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="save-section">
+        <div class="container">
+          <div class="panel glass">
+            <div class="panel-head">
+              <h3>Save Farmer Record</h3>
+            </div>
+
+            <form id="farmerRecordForm">
+              <label>
+                Farmer Name
+                <input type="text" id="farmerName" placeholder="Enter farmer name" required />
+              </label>
+
+              <label>
+                Crop
+                <input type="text" id="farmerCrop" placeholder="e.g. Wheat" required />
+              </label>
+
+              <label>
+                Area (acres)
+                <input type="number" id="farmerArea" value="5" required />
+              </label>
+
+              <button type="submit" class="primary-btn">Save to Firebase</button>
+            </form>
+
+            <div id="saveStatus" class="save-status"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <p>© 2026 KrushiMitra AI</p>
+        <p>AI-powered farming for better harvests</p>
+      </div>
+    </footer>
+
+    <script src="firebase-config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
