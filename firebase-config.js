@@ -127,7 +127,8 @@ img {
 .primary-btn,
 .secondary-btn,
 .lang-btn,
-.auth-tab {
+.auth-tab,
+.mini-btn {
   border: none;
   border-radius: 12px;
   padding: 12px 18px;
@@ -145,7 +146,8 @@ img {
 .primary-btn:hover,
 .secondary-btn:hover,
 .lang-btn:hover,
-.auth-tab:hover {
+.auth-tab:hover,
+.mini-btn:hover {
   transform: translateY(-1px);
 }
 
@@ -153,6 +155,14 @@ img {
   background: white;
   color: var(--text);
   border: 1px solid var(--border);
+}
+
+.mini-btn {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  font-size: 0.8rem;
 }
 
 .auth-shell {
@@ -280,6 +290,20 @@ img {
   justify-content: space-between;
   align-items: center;
   gap: 14px;
+}
+
+.weather-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.weather-actions input {
+  width: 120px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .status-pill {
@@ -720,6 +744,11 @@ select {
   .footer-inner {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .weather-actions {
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .action-grid {

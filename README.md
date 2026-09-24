@@ -21,6 +21,16 @@ const cropRecommendations = {
   }
 };
 
+const MARKET_API_URL = "";
+const weatherFallback = {
+  temperature: 28,
+  humidity: 68,
+  precipitation: 14,
+  wind: 10,
+  description: "Partly Sunny",
+  soil: "Moist"
+};
+
 const authForm = document.getElementById("authForm");
 const authStatusEl = document.getElementById("authStatus");
 const authPanel = document.getElementById("authPanel");
@@ -93,6 +103,111 @@ auth.onAuthStateChanged((user) => {
     userBadge.textContent = "Guest";
     loginToggleBtn.textContent = "Farmer Login";
   }
+});
+
+function getWeatherIcon(code) {
+  if (code === 0) return "☀️";
+  if ([1, 2, 3].includes(code)) return "🌤️";
+  if ([45, 48].includes(code)) return "🌫️";
+  if ([51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82].includes(code)) return "🌧️";
+  if ([71, 73, 75, 77, 85, 86].includes(code)) return "❄️";
+  if ([95, 96, 99].includes(code)) return "⛈️";
+  return "🌦️";
+}
+
+async function fetchWeatherData(lat, lon) {
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,weather_code&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=auto`;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error("Weather fetch failed");
+    const data = await response.json();
+
+    const weather = data.current;
+    const icon = getWeatherIcon(weather.weather_code);
+
+    document.getElementById("weatherTemp").textContent = `${Math.round(weather.temperature_2m)}°C`;
+    document.getElementById("weatherDesc").textContent = `${icon} ${weather.weather_code}`;
+    document.getElementById("weatherHumidity").textContent = `${weather.relative_humidity_2m}%`;
+    document.getElementById("weatherRain").textContent = `${weather.precipitation} mm`;
+    document.getElementById("weatherWind").textContent = `${Math.round(weather.wind_speed_10m)} km/h`;
+    document.getElementById("weatherSoil").textContent = weather.precipitation > 0 ? "Wet" : "Moist";
+  } catch (error) {
+    document.getElementById("weatherTemp").textContent = `${weatherFallback.temperature}°C`;
+    document.getElementById("weatherDesc").textContent = `🌤 ${weatherFallback.description}`;
+    document.getElementById("weatherHumidity").textContent = `${weatherFallback.humidity}%`;
+    document.getElementById("weatherRain").textContent = `${weatherFallback.precipitation} mm`;
+    document.getElementById("weatherWind").textContent = `${weatherFallback.wind} km/h`;
+    document.getElementById("weatherSoil").textContent = weatherFallback.soil;
+  }
+}
+
+async function fetchMarketData() {
+  const fallbackPrices = [
+    { crop: "Rice", price: "₹2,540/q" },
+    { crop: "Wheat", price: "₹2,120/q" },
+    { crop: "Tur", price: "₹6,300/q" },
+    { crop: "Groundnut", price: "₹5,900/q" }
+  ];
+
+  if (!MARKET_API_URL) {
+    renderMarketData(fallbackPrices);
+    return;
+  }
+
+  try {
+    const response = await fetch(MARKET_API_URL);
+    if (!response.ok) throw new Error("Market API unavailable");
+    const data = await response.json();
+    const prices = Array.isArray(data) ? data : (data.prices || fallbackPrices);
+    renderMarketData(prices);
+  } catch (error) {
+    renderMarketData(fallbackPrices);
+  }
+}
+
+function renderMarketData(prices) {
+  const marketList = document.getElementById("marketList");
+  const marketTable = document.getElementById("marketTable");
+
+  if (!marketList || !marketTable) return;
+
+  const mapped = prices.map((item) => {
+    const crop = item.crop || item.name || item.market || "Crop";
+    const price = item.price || item.value || item.rate || "₹0/q";
+    return { crop, price };
+  });
+
+  const listHtml = mapped.map((item) => `
+    <div>
+      <label>${item.crop}</label>
+      <strong>${item.price}</strong>
+    </div>
+  `).join("");
+
+  const tableHtml = mapped.map((item) => `
+    <div class="row">
+      <span>${item.crop}</span>
+      <strong>${item.price}</strong>
+    </div>
+  `).join("");
+
+  marketList.innerHTML = listHtml;
+  marketTable.innerHTML = tableHtml;
+}
+
+function parseCoordinates(raw) {
+  if (!raw) return { lat: 19.076, lon: 72.8777 };
+  const parts = raw.split(",").map((p) => Number(p.trim()));
+  if (parts.length === 2 && !Number.isNaN(parts[0]) && !Number.isNaN(parts[1])) {
+    return { lat: parts[0], lon: parts[1] };
+  }
+  return { lat: 19.076, lon: 72.8777 };
+}
+
+document.getElementById("refreshWeatherBtn").addEventListener("click", () => {
+  const { lat, lon } = parseCoordinates(document.getElementById("locationInput").value);
+  fetchWeatherData(lat, lon);
 });
 
 document.getElementById("cropForm").addEventListener("submit", function (e) {
@@ -202,7 +317,7 @@ langButtons.forEach((button) => {
 
     if (lang === "English") {
       question.textContent = "“How much water should I apply today?”";
-    } else if (lang === "हिन्द��") {
+    } else if (lang === "हिन्दी") {
       question.textContent = "“आज मुझे कितने पानी की जरूरत है?”";
     } else {
       question.textContent = "“आज मला किती पाणी देणे आवश्यक आहे?”";
@@ -284,3 +399,5 @@ document.getElementById("farmerRecordForm").addEventListener("submit", async fun
 });
 
 setAuthMode(authMode);
+fetchWeatherData(19.076, 72.8777);
+fetchMarketData();

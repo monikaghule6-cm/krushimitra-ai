@@ -109,30 +109,33 @@
           <div class="hero-panel glass">
             <div class="weather-header">
               <span>Weather Overview</span>
-              <span class="status-pill success">Good</span>
+              <div class="weather-actions">
+                <input id="locationInput" type="text" value="19.0760,72.8777" placeholder="lat,long" />
+                <button id="refreshWeatherBtn" class="mini-btn">Refresh</button>
+              </div>
             </div>
 
             <div class="temp-row">
-              <h2>28°C</h2>
-              <span>🌤 Partly Sunny</span>
+              <h2 id="weatherTemp">28°C</h2>
+              <span id="weatherDesc">🌤 Partly Sunny</span>
             </div>
 
             <div class="weather-grid">
               <div>
                 <label>Humidity</label>
-                <strong>68%</strong>
+                <strong id="weatherHumidity">68%</strong>
               </div>
               <div>
                 <label>Rain</label>
-                <strong>14 mm</strong>
+                <strong id="weatherRain">14 mm</strong>
               </div>
               <div>
                 <label>Wind</label>
-                <strong>10 km/h</strong>
+                <strong id="weatherWind">10 km/h</strong>
               </div>
               <div>
                 <label>Soil</label>
-                <strong>Moist</strong>
+                <strong id="weatherSoil">Moist</strong>
               </div>
             </div>
           </div>
@@ -241,7 +244,7 @@
               <span class="status-pill warning">Updated Today</span>
             </div>
 
-            <div class="market-list">
+            <div class="market-list" id="marketList">
               <div>
                 <label>Wheat</label>
                 <strong>₹2,120/q</strong>
@@ -364,7 +367,7 @@
           <div class="market-grid">
             <div class="panel glass small-panel">
               <h3>Crop-wise Prices</h3>
-              <div class="market-table">
+              <div class="market-table" id="marketTable">
                 <div class="row">
                   <span>Rice</span>
                   <strong>₹2,540/q</strong>
